@@ -8,8 +8,10 @@ target 'Demo' do
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON'
     pod 'FacebookCore'
-	  pod 'FacebookLogin'
-	  pod 'FacebookShare'
+	pod 'FacebookLogin'
+	pod 'FacebookShare'
+	pod 'Firebase'
+  pod 'Firebase/Messaging'
 end
 
 post_install do |installer|

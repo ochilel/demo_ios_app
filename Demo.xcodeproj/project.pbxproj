@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29F537DD8FD6502978A2E22A /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE777E9EB9F1494D8D16409 /* Pods_Demo.framework */; };
+		772613C41E29A2C500168860 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 772613C31E29A2C500168860 /* GoogleService-Info.plist */; };
 		7766DDA21E297168003919E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766DDA11E297168003919E4 /* AppDelegate.swift */; };
 		7766DDA41E297168003919E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766DDA31E297168003919E4 /* ViewController.swift */; };
 		7766DDA71E297168003919E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7766DDA51E297168003919E4 /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		0F3AEC50400876B87382FAA1 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		420745EC830D2ED386FCC76D /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		772613C21E299C6D00168860 /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
+		772613C31E29A2C500168860 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7766DD9E1E297168003919E4 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7766DDA11E297168003919E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7766DDA31E297168003919E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,12 +115,14 @@
 		7766DDA01E297168003919E4 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				772613C21E299C6D00168860 /* Demo.entitlements */,
 				7766DDA11E297168003919E4 /* AppDelegate.swift */,
 				7766DDA31E297168003919E4 /* ViewController.swift */,
 				7766DDA51E297168003919E4 /* Main.storyboard */,
 				7766DDA81E297168003919E4 /* Assets.xcassets */,
 				7766DDAA1E297168003919E4 /* LaunchScreen.storyboard */,
 				7766DDAD1E297168003919E4 /* Info.plist */,
+				772613C31E29A2C500168860 /* GoogleService-Info.plist */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -220,7 +225,16 @@
 				TargetAttributes = {
 					7766DD9D1E297167003919E4 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = B3N4Y2PUF4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					7766DDB11E297168003919E4 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -260,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7766DDAC1E297168003919E4 /* LaunchScreen.storyboard in Resources */,
+				772613C41E29A2C500168860 /* GoogleService-Info.plist in Resources */,
 				7766DDA91E297168003919E4 /* Assets.xcassets in Resources */,
 				7766DDA71E297168003919E4 /* Main.storyboard in Resources */,
 			);
@@ -486,10 +501,12 @@
 			baseConfigurationReference = 420745EC830D2ED386FCC76D /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
+				DEVELOPMENT_TEAM = B3N4Y2PUF4;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.oscar.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osigu.DemoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -500,10 +517,12 @@
 			baseConfigurationReference = 0F3AEC50400876B87382FAA1 /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
+				DEVELOPMENT_TEAM = B3N4Y2PUF4;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.oscar.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.osigu.DemoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -7,50 +7,79 @@
 //
 
 import UIKit
-import FacebookLogin
-import FacebookCore
+import FBSDKLoginKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFacebookLoginButton()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func setupFacebookLoginButton(){
-        // Add a custom login button to your app
-        let myLoginButton = UIButton(type: .custom)
-        myLoginButton.backgroundColor = UIColor.darkGray
-        myLoginButton.frame = CGRect(x: 0, y: 0, width: 180, height: 40)
-        myLoginButton.center = view.center;
-        myLoginButton.setTitle("Cicklo Demo Login", for: .normal)
         
-        // Handle clicks on the button
-        myLoginButton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
-        
-        // Add the button to the view
-        self.view.addSubview(myLoginButton)
-    }
-    
-    func loginButtonClicked() {
-        let loginManager = LoginManager()
-        loginManager.logIn([ .publicProfile ], viewController: self) { loginResult in
-            switch loginResult {
-            case .failed(let error):
-                print(error)
-            case .cancelled:
-                print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
-            }
+        if (FBSDKAccessToken.current() != nil)
+        {
+            //Verifica si hay una session de facebook
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            self.view.addSubview(loginView)
+            loginView.center = self.view.center
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.delegate = self
+            self.returnUserData()
         }
+        else
+        {
+            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            self.view.addSubview(loginView)
+            loginView.center = self.view.center
+            loginView.readPermissions = ["public_profile", "email", "user_friends"]
+            loginView.delegate = self
+        }
+        
     }
-
-
+    
+    // Facebook Delegate Metodos
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        //Bandera que imprime al usuario logueado
+        print("User Logueado")
+        
+        if ((error) != nil)
+        {
+            // Condicional para procesar el error
+        }
+        else if result.isCancelled {
+            // Condicional para procesar si el usuario cancela el login
+        }
+        else {
+            // Verificar el email
+            if result.grantedPermissions.contains("email")
+            {
+                // Do work
+                print("Usuario Logueado Exitosamente")
+            }
+            
+            self.returnUserData()
+        }
+        
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        // Boton para hacer el logout del usuario
+        print("Logout")
+    }
+    
+    func returnUserData()
+    {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Imprime el error en caso hubiera
+                print("Error: \(error)")
+            }
+            else
+            {
+                print("Usuario logueado: \(result)")
+            }
+        })
+    }
 }
-
